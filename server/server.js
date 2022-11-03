@@ -27,7 +27,9 @@ app.post('/number-game', (req, res) => {
 
 app.get('/number-game', (req, res) => { 
   console.log("in submitGuesses GET,");
-  conditionalLogic();
+  player1Logic();
+  player2Logic(); 
+  res.send(guessesArray); 
 })
 
 //Server Data Section 
@@ -40,17 +42,32 @@ function randomNumberFunction(min, max){
   randomNumberVariable = Math.floor(Math.random() * (max - min + 1)) + min;
 };
 let endingData = []; 
-//Conditional Logic 
-function conditionalLogic(){ 
+//player1 Logic 
+function player1Logic(){ 
   console.log("Random Number:", randomNumberVariable); 
   console.log("guessesArray:", guessesArray); 
-  if (guessesArray[guessesArray.length-1].player1guess > 0 ){ 
+  if (guessesArray[guessesArray.length-1].player1guess > randomNumberVariable ){ 
     endingData.push({p1result: guessesArray[guessesArray.length-1].player1guess})
-  }
-  console.log('endingData array:', endingData);
+    console.log(endingData, "greater than", randomNumberVariable);
+  } else if (guessesArray[guessesArray.length-1].player1guess < randomNumberVariable ){ 
+    endingData.push({p1result: guessesArray[guessesArray.length-1].player1guess}) 
+    console.log(endingData, "lesser than", randomNumberVariable);
+  } else { endingData.push({p1result: guessesArray[guessesArray.length-1].player1guess})
+  console.log(endingData, "equal to ", randomNumberVariable);}
 }
 
-
+function player2Logic(){ 
+  console.log("Random Number:", randomNumberVariable); 
+  console.log("guessesArray:", guessesArray); 
+  if (guessesArray[guessesArray.length-1].player2guess > randomNumberVariable ){ 
+    endingData.push({p2result: guessesArray[guessesArray.length-1].player2guess})
+    console.log(endingData, "greater than", randomNumberVariable);
+  } else if (guessesArray[guessesArray.length-1].player2guess < randomNumberVariable ){ 
+    endingData.push({p2result: guessesArray[guessesArray.length-1].player2guess}) 
+    console.log(endingData, "lesser than", randomNumberVariable);
+  } else { endingData.push({p2result: guessesArray[guessesArray.length-1].player2guess})
+  console.log(endingData, "equal to ", randomNumberVariable);}
+}
 
 app.listen(PORT, () => {
   console.log ('Server is running on port', PORT)

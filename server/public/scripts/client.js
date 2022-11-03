@@ -36,7 +36,7 @@ function submitGuesses() {
       method: "GET", 
       url: '/number-game'
     }).then(function(response){
-      console.log('Send Status okay,', response);
+      console.log('The response is:,', response);
     }).catch(function(error){
       alert('Couldn\'t retrieve number')
     }) 
