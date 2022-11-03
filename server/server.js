@@ -11,6 +11,10 @@ app.use(express.static('server/public'));
 
 // GET & POST Routes go here
 
+app.get('/number-game', () => { 
+  console.log("in server, render function"); 
+  
+})
 
 app.listen(PORT, () => {
   console.log ('Server is running on port', PORT)
