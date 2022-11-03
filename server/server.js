@@ -27,8 +27,10 @@ app.post('/number-game', (req, res) => {
 
 app.get('/number-game', (req, res) => { 
   console.log("in submitGuesses GET,");
+  endingData = []; 
   player1Logic();
   player2Logic(); 
+  addGuesses(); 
   res.send(endingData); 
 })
 
@@ -67,6 +69,13 @@ function player2Logic(){
     console.log(endingData, "lesser than", randomNumberVariable);
   } else { endingData.push({p2result: 'equal'})
   console.log(endingData, "equal to ", randomNumberVariable);}
+}
+
+function addGuesses (){ 
+  for (let guess of guessesArray){ 
+    endingData.push(guess); 
+  }
+  console.log(endingData); 
 }
 
 app.listen(PORT, () => {

@@ -37,10 +37,11 @@ function submitGuesses() {
       url: '/number-game'
     }).then(function(response){
       console.log('The response is:,', response);
-      $('#game-results').append(`
-      <p>Player One guess is ${response[0].p1result}</p>
-      <p>Player Two guess is ${response[1].p2result}</p>
+      $('#details').append(`
+      <p>Player One's guess of  ${response[response.length-1].player1guess} is ${response[0].p1result}</p>
+      <p>Player Two's guess of  ${response[response.length-1].player2guess} is ${response[1].p2result}</p>
       `)
+      winnerFunction(response); 
     }).catch(function(error){
       alert('Couldn\'t retrieve number')
     }) 
@@ -50,4 +51,10 @@ function submitGuesses() {
 
 }
 
+function winnerFunction(response){ 
+  if(response[0].p1result === 'equal')
+  $('#game-results').append(`
+  <h3>WE HAVE A WINNER!!!</h3>
+  `)
+}
 
