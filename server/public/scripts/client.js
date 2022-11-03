@@ -37,6 +37,9 @@ function submitGuesses() {
       url: '/number-game'
     }).then(function(response){
       console.log('The response is:,', response);
+      $('#game-results').append(`
+      <p>Player One guess is ${response[0].p1result}</p>
+      `)
     }).catch(function(error){
       alert('Couldn\'t retrieve number')
     }) 

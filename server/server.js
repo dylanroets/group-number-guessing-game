@@ -29,7 +29,7 @@ app.get('/number-game', (req, res) => {
   console.log("in submitGuesses GET,");
   player1Logic();
   player2Logic(); 
-  res.send(guessesArray); 
+  res.send(endingData); 
 })
 
 //Server Data Section 
@@ -47,12 +47,12 @@ function player1Logic(){
   console.log("Random Number:", randomNumberVariable); 
   console.log("guessesArray:", guessesArray); 
   if (guessesArray[guessesArray.length-1].player1guess > randomNumberVariable ){ 
-    endingData.push({p1result: guessesArray[guessesArray.length-1].player1guess})
+    endingData.push({p1result: 'high'})
     console.log(endingData, "greater than", randomNumberVariable);
   } else if (guessesArray[guessesArray.length-1].player1guess < randomNumberVariable ){ 
-    endingData.push({p1result: guessesArray[guessesArray.length-1].player1guess}) 
+    endingData.push({p1result: 'low'}) 
     console.log(endingData, "lesser than", randomNumberVariable);
-  } else { endingData.push({p1result: guessesArray[guessesArray.length-1].player1guess})
+  } else { endingData.push({p1result: 'equal'})
   console.log(endingData, "equal to ", randomNumberVariable);}
 }
 
@@ -60,12 +60,12 @@ function player2Logic(){
   console.log("Random Number:", randomNumberVariable); 
   console.log("guessesArray:", guessesArray); 
   if (guessesArray[guessesArray.length-1].player2guess > randomNumberVariable ){ 
-    endingData.push({p2result: guessesArray[guessesArray.length-1].player2guess})
+    endingData.push({p2result: 'high'})
     console.log(endingData, "greater than", randomNumberVariable);
   } else if (guessesArray[guessesArray.length-1].player2guess < randomNumberVariable ){ 
-    endingData.push({p2result: guessesArray[guessesArray.length-1].player2guess}) 
+    endingData.push({p2result: 'low'}) 
     console.log(endingData, "lesser than", randomNumberVariable);
-  } else { endingData.push({p2result: guessesArray[guessesArray.length-1].player2guess})
+  } else { endingData.push({p2result: 'equal'})
   console.log(endingData, "equal to ", randomNumberVariable);}
 }
 
