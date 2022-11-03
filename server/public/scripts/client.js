@@ -9,7 +9,7 @@ function handleReady() {
 function onRender (){ 
   $.ajax({ 
     method: 'GET', 
-    url: '/number-game'
+    url: '/render-game'
   })
   .then(function (response) {
     console.log('in the onRender, response: ', response);
@@ -31,9 +31,19 @@ function submitGuesses() {
       player2guess: $('#p2-input').val()
     }
   }).then(function(response){
-    console.log('Ajax is working!')
+    console.log('Send Status okay,', response);
+    $.ajax({ 
+      method: "GET", 
+      url: '/number-game'
+    }).then(function(response){
+      console.log('Send Status okay,', response);
+    }).catch(function(error){
+      alert('Couldn\'t retrieve number')
+    }) 
   }).catch(function(error){
     alert('Error number didn\'t submit')
   })
+
 }
+
 
