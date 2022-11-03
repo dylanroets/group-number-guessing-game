@@ -23,5 +23,17 @@ function onRender (){
 
 function submitGuesses() {
   console.log('in submitGuesses');
+  $.ajax({
+    method: 'POST',
+    url: '/number-game',
+    data: {
+      player1guess: $('#p1-input').val(),
+      player2guess: $('#p2-input').val()
+    }
+  }).then(function(response){
+    console.log('Ajax is working!')
+  }).catch(function(error){
+    alert('Error number didn\'t submit')
+  })
 }
 
