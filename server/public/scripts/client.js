@@ -39,6 +39,7 @@ function submitGuesses() {
       console.log('The response is:,', response);
       $('#game-results').append(`
       <p>Player One guess is ${response[0].p1result}</p>
+      <p>Player Two guess is ${response[1].p2result}</p>
       `)
     }).catch(function(error){
       alert('Couldn\'t retrieve number')
