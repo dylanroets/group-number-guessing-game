@@ -4,9 +4,11 @@ function handleReady() {
   console.log("jquery is loaded!")
   $('#submit-btn').on('click', submitGuesses)
   onRender (); 
+  $('#game-results').on('click', '#restart-btn', onRender );
 }
 
-function onRender (){ 
+
+function onRender () { 
   $.ajax({ 
     method: 'GET', 
     url: '/render-game'
@@ -14,6 +16,8 @@ function onRender (){
   .then(function (response) {
     console.log('in the onRender, response: ', response);
     let randomNumberVariable = response;
+    $('#details').empty(); 
+    $('#game-results').empty(); 
     console.log('changed response to randomNumberV:', randomNumberVariable);
   })
     .catch(function (error) {
@@ -52,9 +56,10 @@ function submitGuesses() {
 }
 
 function winnerFunction(response){ 
-  if(response[0].p1result === 'equal')
+  if(response[0].p1result === 'equal' || response[1].p2result === 'equal')
   $('#game-results').append(`
   <h3>WE HAVE A WINNER!!!</h3>
+  <button id="restart-btn">Restart</button>
   `)
 }
 

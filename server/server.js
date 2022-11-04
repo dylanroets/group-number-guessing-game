@@ -13,6 +13,8 @@ app.use(express.static('server/public'));
 
 app.get('/render-game', (req, res) => { 
   console.log("in server, render function"); 
+  endingData = [];
+  guessesArray = []; 
   randomNumberFunction(1,10); 
   res.send({randomNumberVariable});
 });
@@ -57,6 +59,8 @@ function player1Logic(){
   } else { endingData.push({p1result: 'equal'})
   console.log(endingData, "equal to ", randomNumberVariable);}
 }
+
+
 
 function player2Logic(){ 
   console.log("Random Number:", randomNumberVariable); 
